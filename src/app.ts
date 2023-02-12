@@ -69,7 +69,7 @@ class App {
       },
       apis: ['swagger.yaml'],
     };
-
+    // test
     const specs = swaggerJSDoc(options);
     this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
   }
