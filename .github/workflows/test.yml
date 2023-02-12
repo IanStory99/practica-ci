@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-
+    environment: develop
     runs-on: ubuntu-latest
 
     strategy:
