@@ -22,6 +22,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: echo "variable ${{ vars.LOG_FORMAT }}"
+        
+    - run: touch .env.test.local \
+        && echo "PORT=${{ vars.PORT }}" >> .env.test.local \
+        && echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env.test.local \
+        && echo "LOG_FORMAT=${{ vars.LOG_FORMAT }}" >> .env.test.local \
+        && echo "LOG_DIR=${{ vars.LOG_DIR }}" >> .env.test.local \
+        && echo "ORIGIN=${{ vars.ORIGIN }}" >> .env.test.local \
+        && echo "CREDENTIALS=${{ vars.CREDENTIALS }}" >> .env.test.local
+
     - run: npm install
     - run: npm run test
