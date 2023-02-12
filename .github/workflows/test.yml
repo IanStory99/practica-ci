@@ -1,4 +1,4 @@
-name: Test
+name: Test CI
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        
+
     - run: touch .env.test.local \
         && echo "PORT=${{ vars.PORT }}" >> .env.test.local \
         && echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env.test.local \
