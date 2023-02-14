@@ -9,12 +9,12 @@ on:
 jobs:
 
   build:
-
+    environment: develop
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Build the Docker image and publish
     - run: docker login -u ${{ secrets.DOCKERUSER }} -p ${{ secrets.DOCKERPASSWORD }}
     - run: docker build . --file Dockerfile --tag practica-ci:$(date +%s)
     - run: docker tag practica-ci-server ${{ secrets.DOCKERUSER }}/practica-ci-server:latest
