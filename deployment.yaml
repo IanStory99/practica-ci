@@ -8,7 +8,7 @@ metadata:
 
   labels:
 
-    app: nginx
+    app: practica-ci
 
 spec:
 
@@ -18,7 +18,7 @@ spec:
 
     matchLabels:
 
-      app: nginx
+      app: practica-ci
 
   template:
 
@@ -26,15 +26,15 @@ spec:
 
       labels:
 
-        app: nginx
+        app: practica-ci
 
     spec:
 
       containers:
 
-      - name: nginx
+      - name: practica-ci-container
 
-        image: 
+        image: pau7rr/practica-ci-server:latest
 
         ports:
 

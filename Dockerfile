@@ -7,6 +7,8 @@ WORKDIR /app
 
 RUN npm install
 
+USER node
+
 EXPOSE 3000
 
 # Development build stage
