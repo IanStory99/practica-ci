@@ -5,9 +5,9 @@ COPY . ./app
 
 WORKDIR /app
 
-RUN chmod -R 775 /app
-
 RUN npm install
+
+RUN chmod -R 775 /app
 
 EXPOSE 3000
 
