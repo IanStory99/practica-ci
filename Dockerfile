@@ -5,6 +5,13 @@ COPY . ./app
 
 WORKDIR /app
 
+ENV PORT 3000
+ENV SECRET_KEY secretKey
+ENV LOG_FORMAT dev
+ENV LOG_DIR ../logs
+ENV ORIGIN *
+ENV CREDENTIALS true
+
 RUN npm install
 
 RUN chmod -R 775 /app
