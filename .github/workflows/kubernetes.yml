@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      uses: actions/checkout@v3
     - name: Install oc
       uses: redhat-actions/oc-installer@v1
       with:
@@ -31,5 +32,4 @@ jobs:
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
     - name: Deploy new version
-      uses: actions/checkout@v3
-    - run: kubectl apply -f ./deployment.yaml
+      run: kubectl apply -f ./deployment.yaml
