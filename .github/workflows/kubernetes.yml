@@ -31,4 +31,5 @@ jobs:
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
     - name: Deploy new version
+      uses: actions/checkout@v3
       run: kubectl apply -f ./deployment.yaml
