@@ -23,9 +23,16 @@ jobs:
       uses: redhat-actions/oc-login@v1
       env:
         OPENSHIFT_USER: ${{ secrets.OPENSHIFT_USER }}
-        OPENSHIFT_NAMESPACE: namespcce
+        OPENSHIFT_NAMESPACE: namespace
       with:
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
         openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+
+    - name: Delete actual deployment
+        run: kubectl delete deployments practica-ci
+    - name: Delete actual service
+        run: kubectl delete services practica-ci-service
+    - name: Deploy new version
+        run: kubectl apply -f deployment.yaml
