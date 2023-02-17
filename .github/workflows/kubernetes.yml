@@ -2,7 +2,11 @@ name: Kubernetes deploy
 
 on:
   push:
-    branches: [ "main" ]
+    workflow_run:
+    workflows: ["Docker Image CI"]
+    branches: [main]
+    types: 
+      - completed
 
 jobs:
 
@@ -31,5 +35,9 @@ jobs:
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
+    - name: Delete actual deployment
+      run: kubectl delete deployments practica-ci
+    - name: Delete actual service
+      run: kubectl delete services practica-ci-service
     - name: Deploy new version
       run: kubectl apply -f ./deployment.yaml
