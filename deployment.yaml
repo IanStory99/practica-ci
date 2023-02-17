@@ -38,4 +38,22 @@ spec:
 
         ports:
 
-        - containerPort: 80
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: practica-ci-service
+spec:
+  selector:
+    app: practica-ci
+  ports:
+  - name: name-of-service-port
+    targetPort: 3000
+    port: 3000
+    nodePort: 30253
+    protocol: TCP
+  selector:
+    app: practica-ci
+  type: NodePort
