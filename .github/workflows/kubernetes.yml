@@ -1,8 +1,7 @@
 name: Kubernetes deploy
 
 on:
-  push:
-    workflow_run:
+  workflow_run:
     workflows: ["Docker Image CI"]
     branches: [main]
     types: 
