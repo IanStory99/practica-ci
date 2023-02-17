@@ -31,8 +31,8 @@ jobs:
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
     - name: Delete actual deployment
-        run: kubectl delete deployments practica-ci
+      run: kubectl delete deployments practica-ci
     - name: Delete actual service
-        run: kubectl delete services practica-ci-service
+      run: kubectl delete services practica-ci-service
     - name: Deploy new version
-        run: kubectl apply -f deployment.yaml
+      run: kubectl apply -f deployment.yaml
