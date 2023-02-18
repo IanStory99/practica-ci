@@ -31,9 +31,9 @@ jobs:
         && echo "ORIGIN=${{ vars.ORIGIN }}" >> .env.production.local \
         && echo "CREDENTIALS=${{ vars.CREDENTIALS }}" >> .env.production.local
 
-    - run: echo ${{ github.event }}
-    - run: echo ${{ github.pull_request }}
-    - run: echo ${{ github.event.push }}
+    - run: export LATESTLOG=$(git log -1 --pretty=%B)
+    - run: export SOURCEBRANCH=$(echo $LATESTLOG | awk -F '\\\\n' '{print $1}' |  awk -F '/' '{print $2}' | awk '{print $1}')
+    - run: echo $SOURCEBRANCH
     - run: npm install
     - run: npm run build
 
