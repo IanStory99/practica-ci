@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: practica-ci-container
-        image: pau7rr/practica-ci-server:latest
+        image: $IMAGE
         ports:
         - containerPort: 3000
 
