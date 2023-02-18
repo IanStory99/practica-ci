@@ -2,7 +2,7 @@ name: Kubernetes deploy
 
 on:
   workflow_run:
-    workflows: ["Docker Image CI"]
+    workflows: ["Docker Image CI", "Test CI", "Integration Test CI"]
     branches: [main]
     types: 
       - completed
