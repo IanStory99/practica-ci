@@ -2,7 +2,7 @@ name: Integration Test CI
 
 on:
   workflow_run:
-    workflows: ["Test CI"]
+    workflows: ["Build and Test CI"]
     branches: [main]
     types: 
       - completed
