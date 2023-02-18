@@ -31,11 +31,6 @@ jobs:
         && echo "ORIGIN=${{ vars.ORIGIN }}" >> .env.production.local \
         && echo "CREDENTIALS=${{ vars.CREDENTIALS }}" >> .env.production.local
 
-    - run: echo ${{ github.ref }}
-    - run: echo ${{ github.head_ref }}
-    - run: echo ${{ github.ref_name }}
-    - run: echo ${{ github.base_ref }}
-    - run: echo ${{ github.action_ref }}
     - run: npm install
     - run: npm run build
 
