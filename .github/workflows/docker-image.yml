@@ -1,8 +1,6 @@
 name: Docker Image CI
 
 on:
-  pull_request:
-    branches: [ "main" ]
   workflow_run:
     workflows: ["Integration Test CI"]
     branches: [main]
@@ -12,7 +10,7 @@ on:
 jobs:
 
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'pull_request' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment: develop
     runs-on: ubuntu-latest
 
@@ -23,6 +21,6 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag practica-ci-server
       - name: Generate Docker Tag
-        run: docker tag practica-ci-server ${{ secrets.DOCKERUSER }}/practica-ci-server:${GITHUB_HEAD_REF##*/}
+        run: docker tag practica-ci-server ${{ secrets.DOCKERUSER }}/practica-ci-server:${$GITHUB_REF##*/}
       - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKERUSER }}/practica-ci-server:${GITHUB_HEAD_REF##*/}
+        run: docker push ${{ secrets.DOCKERUSER }}/practica-ci-server:${$GITHUB_REF##*/}
