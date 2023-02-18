@@ -35,9 +35,5 @@ jobs:
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
-    - name: Delete actual deployment
-      run: kubectl delete deployments practica-ci
-    - name: Delete actual service
-      run: kubectl delete services practica-ci-service
     - name: Deploy new version
-      run: kubectl apply -f ./deployment.yaml -e IMAGE=${{ secrets.DOCKERUSER }}/practica-ci-server:${{ github.event.pull_request.base.ref }}
+      run: kubectl apply -f ./deployment.yaml
