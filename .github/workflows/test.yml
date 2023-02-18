@@ -31,6 +31,7 @@ jobs:
         && echo "ORIGIN=${{ vars.ORIGIN }}" >> .env.production.local \
         && echo "CREDENTIALS=${{ vars.CREDENTIALS }}" >> .env.production.local
 
+    - run: echo ${{ github.event.pull_request.base.ref }}
     - run: npm install
     - run: npm run build
 
