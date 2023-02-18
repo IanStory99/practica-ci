@@ -40,4 +40,4 @@ jobs:
     - name: Delete actual service
       run: kubectl delete services practica-ci-service
     - name: Deploy new version
-      run: kubectl apply -f ./deployment.yaml -e IMAGE=${{ secrets.DOCKERUSER }}/practica-ci-server:${GITHUB_HEAD_REF##*/}
+      run: kubectl apply -f ./deployment.yaml -e IMAGE=${{ secrets.DOCKERUSER }}/practica-ci-server:${{ github.event.pull_request.base.ref##*/ }}

@@ -1,17 +1,40 @@
-name: Test CI
+name: Build and Test CI
 
 on:
-  workflow_run:
-    workflows: ["Build CI"]
-    branches: [main]
-    types: 
-      - completed
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
+  build:
+    environment: develop
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - run: touch .env.production.local \
+        && echo "PORT=${{ vars.PORT }}" >> .env.production.local \
+        && echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env.production.local \
+        && echo "LOG_FORMAT=${{ vars.LOG_FORMAT }}" >> .env.production.local \
+        && echo "LOG_DIR=${{ vars.LOG_DIR }}" >> .env.production.local \
+        && echo "ORIGIN=${{ vars.ORIGIN }}" >> .env.production.local \
+        && echo "CREDENTIALS=${{ vars.CREDENTIALS }}" >> .env.production.local
+
+    - run: npm install
+    - run: npm run build
+
   test:
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'pull_request' }}
     environment: develop
     runs-on: ubuntu-latest
 
