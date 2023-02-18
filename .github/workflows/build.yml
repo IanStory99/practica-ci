@@ -32,4 +32,4 @@ jobs:
         && echo "CREDENTIALS=${{ vars.CREDENTIALS }}" >> .env.production.local
 
     - run: npm install
-    - run: npm run start
+    - run: npm run build
